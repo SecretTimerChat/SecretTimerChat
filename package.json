@@ -1,0 +1,20 @@
+{
+  "name": "secret-timer-chat",
+  "version": "1.0.0",
+  "description": "A real-time chat application built with Firebase",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "echo 'Define your build step here'"
+  },
+  "keywords": [
+    "firebase",
+    "chat",
+    "real-time"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^10.9.0"
+  }
+}
