@@ -1,25 +1,21 @@
 // database.js
-import { getDatabase, ref, push, onValue } from 'firebase/database';
-import app from './firebaseConfig';
+import { getDatabase, ref, push, onValue } from "firebase/database";
+import { app } from "./firebaseConfig";
 
 const database = getDatabase(app);
 
-// 메시지를 Realtime Database에 쓰는 함수
-function writeMessage(roomId, message) {
-  const messagesRef = ref(database, `rooms/${roomId}/messages`);
-  push(messagesRef, message);
+function sendMessage(roomId, message) {
+  push(ref(database, `rooms/${roomId}/messages`), message);
 }
 
-// 채팅방의 메시지를 실시간으로 읽는 함수
-function readMessages(roomId, callback) {
-  const messagesRef = ref(database, `rooms/${roomId}/messages`);
-  onValue(messagesRef, (snapshot) => {
+function receiveMessages(roomId, callback) {
+  onValue(ref(database, `rooms/${roomId}/messages`), (snapshot) => {
     const messages = [];
-    snapshot.forEach((childSnapshot) => {
-      messages.push(childSnapshot.val());
+    snapshot.forEach((child) => {
+      messages.push(child.val());
     });
     callback(messages);
   });
 }
 
-export { writeMessage, readMessages };
+export { sendMessage, receiveMessages };

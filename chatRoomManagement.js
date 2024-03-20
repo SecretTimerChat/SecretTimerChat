@@ -1,32 +1,17 @@
 // chatRoomManagement.js
-import { getDatabase, ref, push, set, get, child } from 'firebase/database';
-import app from './firebaseConfig';
+import { getDatabase, ref, push, set } from "firebase/database";
+import { app } from "./firebaseConfig";
 
 const database = getDatabase(app);
 
-// 채팅방 만들기 함수
-function createRoom(roomName, callback) {
-  const roomRef = ref(database, 'rooms/' + roomName);
-  get(child(roomRef, '/')).then((snapshot) => {
-    if (snapshot.exists()) {
-      alert("Room already exists.");
-    } else {
-      set(roomRef, { name: roomName });
-      callback(roomName);
-    }
-  });
+function createRoom(roomName) {
+  const newRoomRef = push(ref(database, 'rooms'));
+  set(newRoomRef, { name: roomName, createdAt: Date.now() });
 }
 
-// 채팅방 참여하기 함수
-function joinRoom(roomName, callback) {
-  const roomRef = ref(database, 'rooms/' + roomName);
-  get(child(roomRef, '/')).then((snapshot) => {
-    if (snapshot.exists()) {
-      callback(roomName);
-    } else {
-      alert("Room does not exist.");
-    }
-  });
+function joinRoom(roomId) {
+  // 여기서 roomId를 사용하여 특정 채팅방에 참여하는 로직 구현
+  // 예: 존재하는 채팅방 찾기, 사용자 목록 업데이트 등
 }
 
 export { createRoom, joinRoom };
