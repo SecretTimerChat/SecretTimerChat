@@ -27,7 +27,7 @@
         </div>
 
         <div class="chat-window border p-4 h-64 overflow-auto mb-4 rounded bg-white">
-            <!-- Chat messages will be displayed here -->
+            <ul id="messagesList"></ul> <!-- Chat messages will be displayed here -->
         </div>
 
         <div class="flex">
@@ -36,12 +36,13 @@
         </div>
     </div>
 
-    <!-- Firebase App (필수) & Firebase Realtime Database (선택적 사용) -->
-    <!-- Firebase 설정 파일 임포트 -->
-    <script type="module">
-        import { app, database } from './firebaseConfig.js';
-        // 여기에 Firebase를 사용하는 JavaScript 코드를 추가하세요.
-    </script>
-    <script src="app.js" type="module"></script>
+    <!-- Advertisement Modal -->
+    <div id="adModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden justify-center items-center">
+        <div class="bg-white p-4 rounded-lg text-center">
+            <p>Advertisement for 30 seconds. For ad inquiries, contact secretstudioinc@gmail.com</p>
+        </div>
+    </div>
+
+    <script type="module" src="sswwss/chat.js"></script>
 </body>
 </html>
