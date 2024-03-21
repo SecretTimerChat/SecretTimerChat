@@ -12,11 +12,16 @@ jobs:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v0.4
+      # Checkout your repository code
+      - uses: actions/checkout@v2
+
+      # Install dependencies and build your project
       - run: |
           npm ci
           npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0.4
+
+      # Deploy to Firebase Hosting
+      - uses: FirebaseExtended/action-hosting-deploy@0.7.1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MY_CHAT_APP_2023_UNIQUE }}'
